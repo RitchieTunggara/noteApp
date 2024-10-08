@@ -5,15 +5,9 @@ import { faNoteSticky } from '@fortawesome/free-solid-svg-icons';
 import NoteWindow from './NoteWindow'; // Import the NoteWindow component
 
 function Title() {
-  const [isNoteWindowOpen, setIsNoteWindowOpen] = useState(false);
-
-  const handleOpenNoteWindow = () => {
-    setIsNoteWindowOpen(true);
-  };
-
-  const handleCloseNoteWindow = () => {
-    setIsNoteWindowOpen(false);
-  };
+  const [notes, setNotes] = useState([]);
+  const [showNoteWindow, setShowNoteWindow] = useState(false);
+  
 
   return (
     <>
@@ -30,18 +24,20 @@ function Title() {
 
         <a
           className="inline-block rounded border border-indigo-600 px-6 py-3 text-sm font-medium text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500 ml-auto cursor-pointer"
-          onClick={handleOpenNoteWindow}
+          onClick={() => setShowNoteWindow(true)}
         >
           Add a note
         </a>
       </div>
 
-      {/* Conditionally render NoteWindow */}
-      {isNoteWindowOpen && (
-        <NoteWindow onClose={handleCloseNoteWindow} />
+      {showNoteWindow && (
+        <NoteWindow 
+          onClose={() => setShowNoteWindow(false)} 
+        />
       )}
+      
     </>
   );
-}
+};
 
 export default Title;
