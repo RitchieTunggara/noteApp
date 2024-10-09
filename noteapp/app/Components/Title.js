@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNoteSticky } from '@fortawesome/free-solid-svg-icons';
 import NoteWindow from './NoteWindow'; // Import the NoteWindow component
+import NotesArea from './NotesArea';
 
-function Title() {
-  const [notes, setNotes] = useState([]);
+function Title({ onSave }) {
   const [showNoteWindow, setShowNoteWindow] = useState(false);
   
-
   return (
     <>
       <div className="flex gap-2 items-center">
@@ -32,7 +31,8 @@ function Title() {
 
       {showNoteWindow && (
         <NoteWindow 
-          onClose={() => setShowNoteWindow(false)} 
+          onClose={() => setShowNoteWindow(false)}
+          onSave={onSave}  
         />
       )}
       
